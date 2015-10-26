@@ -4,19 +4,18 @@ var fleekRouter = require("fleek-router");
 var should      = require('chai').should;
 var expect      = require('chai').expect;
 var fleekParser = require("fleek-parser");
+var fleekResponse = require("../lib/response");
 
 var swagger     = fleekParser.parse("./swagger.json");
 
 var app = koa();
 fleekRouter(app,{
-  controllers : "./controllers",
-  swagger : './swagger.json'
+  response : true,
+  controllers : "./controllers"
 })
 
 
-
-
-describe('response with default parameters', function(){
+ describe('response with default parameters', function(){
   it('should return default schema when the controller does not pass any arguments', function(done){
     var path = "/pets";
     var method = 'get';
@@ -77,4 +76,3 @@ describe('response with default parameters', function(){
     });
   })
 });
-
